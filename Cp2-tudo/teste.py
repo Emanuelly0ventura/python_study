@@ -1,15 +1,13 @@
-name = input("digite seu nome: ")
+frutas = ("maça", "abacaxi", "morango", "banana")
 
-while name == "":
-    print("Você não escreveu o seu nome")
-    name = input("digite seu nome: ")
-print(f"ola {name}") 
+frutas[0]
 
-comida = input("Escreva uma comida que vc goste (pra sair q): ")
+for i in (0,1,2,3):
+    print(frutas[i])
 
-while not comida == "q":
-    print(f"vc gosta de {comida}")
-    comida = input("Escreva outra comida que vc goste (pra sair q): ")
+#frutas.sort --> classifica
+#so se usa se os tipos são iguas
+#frutas.reverse --> inverte
+cordenadas = [(1,2), (3,4), (5,6)]
 
-print("tchau :(")
 
