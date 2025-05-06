@@ -25,3 +25,20 @@ with open ('data.json', 'r') as file: #para leitura
 
 with open ('output.json', 'w') as file: # para escrita
     json.dump(data, file)
+
+
+    print(input("1-Ler e apresentar os dados do arquivo JSON \n" +
+"2-Criar novos registros \n" +
+"3-Remover registros \n"+
+"4-Alterar (idade, sexo, cidade, estado) de uma pessoa \n" +
+'5-Listar todas as pessoas de um estado - digito o estado e mostra a lista \n'+
+"6-Sair do programa \n" ))
+    
+arquivos = 'dados.json'
+estados = (
+    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO',
+    'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI',
+    'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+)
+
+
