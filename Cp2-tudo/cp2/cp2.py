@@ -39,7 +39,7 @@ def criarUsuario(dados):
         print("Usuario já registrado")
         return
     
-#atribitos principal
+#atribitos principais
 
     try:
         idade = int(input("Idade: "))
@@ -94,7 +94,7 @@ def removerUsuario(dados):
     else:
         print("Usuario não detectado")
 
-#atributo que repete pq é para alterar
+#atributo que repete porque é para alterar
 def alterarUsuario(dados):
     nome = input("Digite o nome do usuario para altera-lo: ").strip()
     if nome not in dados:
@@ -126,7 +126,7 @@ def alterarUsuario(dados):
     salvarDados(dados)
     print("Registro alterado com sucesso")
 
-#estados  
+#estados 
 
 estados = (
     
@@ -156,7 +156,7 @@ def listaEstado(dados):
     else:
         print(f"Não há pessoas cadastradas no estado {estado}.")
     
-#menu principal 
+# menu principal 
 def menu():
     dados = carregarDados()
     while True:
@@ -190,7 +190,7 @@ def menu():
                 break
             case _:
                 print("Opção invalida")
-                
+
 if __name__ == "__main__":
     menu()
 
