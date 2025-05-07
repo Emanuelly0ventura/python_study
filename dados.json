@@ -1,1 +1,8 @@
-{}
+{
+    "manu": {
+        "idade": 23,
+        "sexo": "S",
+        "cidade": "kl",
+        "estado": "MG"
+    }
+}
