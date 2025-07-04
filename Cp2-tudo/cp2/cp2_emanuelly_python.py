@@ -25,7 +25,7 @@ def validarEstado(estado):
     return estado.upper() in estados
 
 def validarIdade(idade):
-    if 0 <= idade <= 120:
+    if 0 < idade <= 120:
         return True
     return False
 
@@ -43,12 +43,12 @@ def criarUsuario(dados):
 
     try:
         idade = int(input("Idade: "))
-        if not validarIdade:
-            return
+        if not validarIdade(idade):
             print("Idade fora do intervalo ou incorreto!")
+            return
     except ValueError:
         print("Idade incorreta, tente novamente!")
-        
+        return
 
     sexo = input("Sexo (M/F): ").strip().upper()
     if not validarSexo(sexo):
@@ -103,13 +103,18 @@ def alterarUsuario(dados):
 
     try:
         idade = int(input("Nova idade: "))
+        if not validarIdade(idade):
+            print("Idade fora do intervalo ou incorreto!")
+            return
     except ValueError:
         print("Idade incorreta, tente novamente!")
+        return
         
 
-    sexo = input("Novo sexo (M/F): ").strip().upper()
+    sexo = input("Novo Sexo (M/F): ").strip().upper()
     if not validarSexo(sexo):
-        print("Sexo incorreto, tente novamento!")
+        print("Sexo incorreto, tente novamente!")
+        return
         
 
     cidade = input("Nova cidade: ").strip()
