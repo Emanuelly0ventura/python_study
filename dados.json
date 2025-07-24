@@ -1,8 +1,8 @@
 {
-    "manu": {
-        "idade": 23,
-        "sexo": "S",
-        "cidade": "kl",
-        "estado": "MG"
+    "lucas": {
+        "Nota 1": 8.0,
+        "Nota 2": 9.0,
+        "Nota 3": 10.0,
+        "Media": 9.0
     }
 }

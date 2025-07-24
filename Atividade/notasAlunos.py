@@ -16,49 +16,149 @@ def salvarDados(dados):
 
     
 def validarNota(nota):
-    if 0.0 > nota >= 10.0:
-        return True
-    return False
+    return 0.0 <= nota <= 10.0
 
-
-
-#nume 1
+#escolha de numero 1
 def cadastroAluno(dados):
-    
-    nome = input("Nome do aluno: ").strip()
-    if nome in dados:
-        print("Aluno ja cadastrado")
+    try:
+        qtd = int(input("Quantos alunos quer cadastrar: "))
+    except ValueError:
+        print("Numero invalido, tente novamente!")
         return
 
-    try:
-        nota1 = input("Nota1: ")
-        if nota1 != validarNota:
-            print("Nota não valida")
-    except ValueError:
-        print("Nota incorreta, tente novamente")
+    for i in range(qtd):
+        nome = input("Nome do aluno: ").strip()
+        if nome in dados:
+            print("Aluno ja cadastrado")
+            return
 
-    try:
-        nota2 = input("Nota1: ")
-        if nota2 != validarNota:
-            print("Nota não valida")
-    except ValueError:
-        print("Nota incorreta, tente novamente")
+        try:
+            nota1 = float(input("Nota1: "))
+            if not validarNota(nota1):
+                print("Nota não válida")
+                return
+        except ValueError:
+            print("Nota incorreta, tente novamente")
+            return
 
-    try:
-        nota3 = input("Nota1: ")
-        if nota3 != validarNota:
-            print("Nota não valida")
-    except ValueError:
-        print("Nota incorreta, tente novamente")
+        try:
+            nota2 = float(input("Nota2: "))
+            if not validarNota(nota2):
+                print("Nota não válida")
+                return
+        except ValueError:
+            print("Nota incorreta, tente novamente")
+            return
 
+        try:
+            nota3 = float(input("Nota3: "))
+            if not validarNota(nota3):
+                print("Nota não valida")
+                return
+        except ValueError:
+            print("Nota incorreta, tente novamente")
+            return
+
+        
+        try:
+            media = (nota1 + nota2 + nota3) /3
+            if media >= 6:
+                print(f"{media :.2f}: Aprovado")
+            else:
+                print(f"{media :.2f}: Reprovado")
+        except ValueError:
+            print("Media não valida")
+            return
+
+    print("\n--- Médias ---")
+    for nome in dados:
+        print(f"{aluno['nome']}: {aluno['media']:.2f}")
+    
+    # print("\n--- Médias ---")
+    # for aluno in dados:
+    #     if media >=6:
+    #         print(f"{aluno['nome']}: {aluno['media']:.2f} | Aprovado")
+    #     else:
+    #         print(f"{aluno['nome']}: {aluno['media']:.2f} | Reprovado")
+
+
+    
+
+
+#salvar nos dados
 
     dados[nome] = {
         "Nota 1": nota1,
         "Nota 2": nota2,
-        "Nota 3": nota3
+        "Nota 3": nota3,
+        "Media" : media
     }
 
     salvarDados(dados)
+    
     print(f"Registro de {nome} feita com sucesso")
+
+#escolha de numero 2
+
+def visualizarNota(dados):
+    nome = input("Digite o nome do(a) aluno(a): ").strip()
+    if nome in dados:
+        info = dados[nome]
+        print(f"Nome: {nome}")
+        print(f"Nota1: {info['Nota 1']}")
+        print(f"Nota2: {info['Nota 2']}")
+        print(f"Nota3: {info['Nota 3']}")
+        print(f"Média: {info['Media']}")
+
+    else:
+        print("Aluno(a) não cadastrado") 
+
+
+#escolha de numero 3
+
+def removerAluno(dados):
+    nome = input("Escreva o nome do aluno(a) para deletar: ").strip()
+    if nome in dados:
+        del dados[nome]
+        salvarDados(dados)
+        print("Aluno(a) removido com sucesso!")
+    else:
+        print("Aluno(a) ja deletado ou não cadastrado")
+
+
+#tela de menu
+
+def menu():
+    dados = carregarDados()
+    while True:
+        print("\n __Menu__")
+        print("1- Adicionar aluno(a)/ver media")
+        print("2- visualizar aluno(a)")
+        print("3- Remover aluno(a)")
+        print("4- sair")
+
+        opcao = int(input("Escolha um numero: "))
+
+        match opcao:
+            case 1:
+                cadastroAluno(dados)
+            
+            case 2:
+                visualizarNota(dados)
+
+            case 3:
+                removerAluno(dados)
+
+            case 4:
+                print("Saindo. . .")
+                break
+
+            case _:
+                print("Opção invalida!")
+        
+
+if __name__ == "__main__":
+    menu()
+
 
 
