@@ -20,7 +20,7 @@ for i in range(quantidade):
         nota = float(input(f"Nota {j}: "))
         notas.append(nota)
     media = sum(notas) / len(notas)
-    alunos.append({"nome": nome, "notas": notas, "media": media})
+    alunos.append({"nome": nome, "notas": notas,"media": media})
 
 print("\n--- Médias ---")
 for aluno in alunos:

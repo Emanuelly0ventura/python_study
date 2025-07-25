@@ -70,20 +70,12 @@ def cadastroAluno(dados):
             print("Media não valida")
             return
 
-    print("\n--- Médias ---")
-    for nome in dados:
-        print(f"{aluno['nome']}: {aluno['media']:.2f}")
-    
-    # print("\n--- Médias ---")
-    # for aluno in dados:
-    #     if media >=6:
-    #         print(f"{aluno['nome']}: {aluno['media']:.2f} | Aprovado")
-    #     else:
-    #         print(f"{aluno['nome']}: {aluno['media']:.2f} | Reprovado")
 
+    maior_media = max(dados.items(), key=lambda item: item[1]['Media'])
+    menor_media = min(dados.items(), key=lambda item: item[1]['Media'])
 
-    
-
+    print(f"\nMaior média: {maior_media[0]} com {maior_media[1]['Media']:.2f}")
+    print(f"Menor média: {menor_media[0]} com {menor_media[1]['Media']:.2f}")
 
 #salvar nos dados
 
@@ -137,7 +129,11 @@ def menu():
         print("3- Remover aluno(a)")
         print("4- sair")
 
-        opcao = int(input("Escolha um numero: "))
+        try:
+            opcao = int(input("Escolha um numero: "))
+        except ValueError:
+            print("Digite um número válido!")
+            continue
 
         match opcao:
             case 1:
