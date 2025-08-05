@@ -29,67 +29,60 @@ def cadastroAluno(dados):
     for i in range(qtd):
         nome = input("Nome do aluno: ").strip()
         if nome in dados:
-            print("Aluno ja cadastrado")
-            return
+            print("Aluno já cadastrado")
+            continue  
 
         try:
             nota1 = float(input("Nota1: "))
             if not validarNota(nota1):
                 print("Nota não válida")
-                return
+                continue
         except ValueError:
             print("Nota incorreta, tente novamente")
-            return
+            continue
 
         try:
             nota2 = float(input("Nota2: "))
             if not validarNota(nota2):
                 print("Nota não válida")
-                return
+                continue
         except ValueError:
             print("Nota incorreta, tente novamente")
-            return
+            continue
 
         try:
             nota3 = float(input("Nota3: "))
             if not validarNota(nota3):
-                print("Nota não valida")
-                return
+                print("Nota não válida")
+                continue
         except ValueError:
             print("Nota incorreta, tente novamente")
-            return
+            continue
+
+        media = (nota1 + nota2 + nota3) / 3
+        if media >= 6:
+            print(f"{media:.2f}: Aprovado")
+        else:
+            print(f"{media:.2f}: Reprovado")
 
         
-        try:
-            media = (nota1 + nota2 + nota3) /3
-            if media >= 6:
-                print(f"{media :.2f}: Aprovado")
-            else:
-                print(f"{media :.2f}: Reprovado")
-        except ValueError:
-            print("Media não valida")
-            return
+        dados[nome] = {
+            "Nota 1": nota1,
+            "Nota 2": nota2,
+            "Nota 3": nota3,
+            "Media": media
+        }
+        salvarDados(dados)
+        print(f"\nRegistro de {nome} feito com sucesso.")
 
-
-    maior_media = max(dados.items(), key=lambda item: item[1]['Media'])
-    menor_media = min(dados.items(), key=lambda item: item[1]['Media'])
-
-    print(f"\nMaior média: {maior_media[0]} com {maior_media[1]['Media']:.2f}")
-    print(f"Menor média: {menor_media[0]} com {menor_media[1]['Media']:.2f}")
-
-#salvar nos dados
-
-    dados[nome] = {
-        "Nota 1": nota1,
-        "Nota 2": nota2,
-        "Nota 3": nota3,
-        "Media" : media
-    }
-
-    salvarDados(dados)
     
-    print(f"Registro de {nome} feita com sucesso")
+    if dados:
+        maior_media = max(dados.items(), key=lambda item: item[1]['Media'])
+        menor_media = min(dados.items(), key=lambda item: item[1]['Media'])
 
+        print(f"\nMaior média: {maior_media[0]} com {maior_media[1]['Media']:.2f}")
+        print(f"Menor média: {menor_media[0]} com {menor_media[1]['Media']:.2f}")
+        
 #escolha de numero 2
 
 def visualizarNota(dados):
