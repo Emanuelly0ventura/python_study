@@ -104,6 +104,10 @@ def insert_record():
     except Exception as e:
         print("Erro inesperado:", e)
 
+    cursor.close()
+    connection.close()
+
+
     try:
         # Inserção de um novo registro
         insert_query = '''
@@ -193,9 +197,9 @@ def menu():
     print("\n=== Lista Telefônica ===")
     print("1) Criar registro")
     print("2) Listar registros")
-    print("3) Atualizar registro (por nome)")
-    print("4) Buscar registro (por nome)")
-    print("5) Remover registro (por nome)")
+    print("3) Atualizar registro (por id)")
+    print("4) Buscar registro (por id)")
+    print("5) Remover registro (por id)")
     print("0) Sair")
 
 if __name__ == "__main__":
@@ -213,31 +217,36 @@ if __name__ == "__main__":
             list_records()
 
         elif opcao == "3":
-            nome = input("Nome a atualizar: ").strip()
-            if nome:
-                update_record(nome)
+            id = input("Id a atualizar: ").strip()
+            if id:
+                update_record(id)
+                #atualizar para id
                 print("\n")
                 list_records()
+                #atualizar para id
             else:
-                print("Informe um nome válido.")
+                print("Informe um id válido.")
 
         elif opcao == "4":
-            nome = input("Nome para busca: ").strip()
-            if nome:
+            id = input("Id para busca: ").strip()
+            if id:
                 print("\n")
-                search_name(nome)
+                search_name(id)
+                #atualizar para id
             else:
-                print("Informe um nome válido.")
+                print("Informe um Id válido.")
 
         elif opcao == "5":
-            nome = input("Nome para remover: ").strip()
-            if nome:
+            id = input("Id para remover: ").strip()
+            if id:
                 print("\n")
-                delete_record(nome)
+                delete_record(id)
+                #atualizar para id
                 print("\n")
                 list_records()
+                #atualizar para id
             else:
-                print("Informe um nome válido.")
+                print("Informe um id válido.")
 
         elif opcao == "0":
             print("Saindo.")
