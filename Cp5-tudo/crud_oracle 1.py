@@ -149,12 +149,12 @@ def list_records():
 
 list_records()
 
-def search_name(nome_busca):
+def search_ID(ID_busca):
     encontrado = False
     agenda_records = []
 
     try:
-        query = f'''SELECT * FROM AGENDA WHERE nome = '{nome_busca}' '''
+        query = f'''SELECT * FROM AGENDA WHERE id = '{ID_busca}' '''
 
         cursor.execute(query)
 
@@ -169,7 +169,7 @@ def search_name(nome_busca):
         print("Erro inesperado:", e)
 
     for linha in agenda_records:
-        if linha[1].strip().lower() == nome_busca.strip().lower():
+        if linha[1].strip().lower() == ID_busca.strip().lower():
             print(f"{'Nome':<10} {'Sobrenome':<20} - Telefone")
             print(f"{linha[1]:<10} {linha[2]:<20} - {linha[3]:<15}")
             encontrado = True
@@ -177,15 +177,15 @@ def search_name(nome_busca):
     if not encontrado:
         print("Nenhum registro encontrado com esse nome.")
 
-search_name("Luiz")
+search_ID("Luiz")
 
-def delete_record(nome_remover):
+def delete_record(ID_remover):
 
-    print(f"Registros com nome '{nome_remover}' removidos com sucesso.")
+    print(f"Registros com nome '{ID_remover}' removidos com sucesso.")
 
 delete_record("Alberto")
 
-def update_record(nome_busca):
+def update_record(ID_busca):
     atualizados = 0
 
     print(f"\n{atualizados} registro(s) atualizado(s).")
@@ -223,7 +223,7 @@ if __name__ == "__main__":
                 #atualizar para id
                 print("\n")
                 list_records()
-                #atualizar para id
+                
             else:
                 print("Informe um id válido.")
 
@@ -231,7 +231,7 @@ if __name__ == "__main__":
             id = input("Id para busca: ").strip()
             if id:
                 print("\n")
-                search_name(id)
+                search_ID(id)
                 #atualizar para id
             else:
                 print("Informe um Id válido.")
@@ -241,10 +241,10 @@ if __name__ == "__main__":
             if id:
                 print("\n")
                 delete_record(id)
-                #atualizar para id
+
                 print("\n")
                 list_records()
-                #atualizar para id
+                
             else:
                 print("Informe um id válido.")
 
