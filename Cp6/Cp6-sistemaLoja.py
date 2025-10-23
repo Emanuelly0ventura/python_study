@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 
 #-----------------------BANCO DE DADOS---------------------- 
 
@@ -190,7 +191,6 @@ class CRUDProduto:
     
 #--------crud do pedidod e dos items do pedido
 
-from datetime import datetime
 
 class CRUDPedido:
     @staticmethod
